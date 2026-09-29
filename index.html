@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Quicky Bite - Ultra-fast, fresh food delivery to your doorstep. Crave it? Quicky Bite it!" />
+  <title>Quicky Bite | Fast, Fresh & Delicious Food Delivery</title>
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220%200%20100%20100%22><text y=%22.9em%22 font-size=%2290%22>🍔</text></svg>">
+  
+  <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Top Announcement Bar -->
+  <div class="announcement-bar">
+    <div class="announcement-content">
+      <span>🎉 <strong>Flash Deal:</strong> Use code <mark>QUICKY20</mark> for 20% OFF on all orders above ₹270!</span>
+      <span class="delivery-guarantee">⚡ Average Delivery: <strong>22 Mins</strong></span>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header -->
+  <header class="navbar" id="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <a href="#" class="logo">
+          <div class="logo-icon">
+            <i class="fa-solid fa-bolt"></i>
+          </div>
+          <div class="logo-text">
+            <span class="brand-title">Quicky<span class="highlight">Bite</span></span>
+            <span class="brand-sub">FOOD IN A FLASH</span>
+          </div>
+        </a>
+
+        <!-- Location Selector -->
+        <div class="delivery-location" id="locationSelectorBtn">
+          <i class="fa-solid fa-location-dot location-icon"></i>
+          <div class="location-info">
+            <span class="location-label">Deliver to</span>
+            <span class="location-current" id="currentAddressText">104 Main Street, Downtown</span>
+          </div>
+          <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+        </div>
+      </div>
+
+      <!-- Live Search Bar -->
+      <div class="search-container">
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input 
+          type="text" 
+          id="searchInput" 
+          placeholder="Search burgers, pizzas, noodles, shakes..." 
+          autocomplete="off"
+        />
+        <button class="clear-search-btn" id="clearSearchBtn" aria-label="Clear Search">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+
+      <!-- Action Icons (Theme, Favorites, Orders, Cart) -->
+      <div class="nav-actions">
+        <!-- Theme Toggle -->
+        <button class="nav-btn theme-toggle-btn" id="themeToggleBtn" title="Toggle Light/Dark Theme" aria-label="Toggle Theme">
+          <i class="fa-solid fa-moon" id="themeIcon"></i>
+        </button>
+
+        <!-- Wishlist Button -->
+        <button class="nav-btn wishlist-btn" id="wishlistModalBtn" title="Saved Favorites" aria-label="Wishlist">
+          <i class="fa-regular fa-heart"></i>
+          <span class="badge" id="wishlistCount">0</span>
+        </button>
+
+        <!-- Orders History Button -->
+        <button class="nav-btn orders-btn" id="ordersHistoryBtn" title="My Orders & Live Tracker" aria-label="Orders">
+          <i class="fa-solid fa-clock-rotate-left"></i>
+          <span class="btn-text">Orders</span>
+        </button>
+
+        <!-- Cart Button -->
+        <button class="nav-btn cart-btn-cta" id="cartOpenBtn" aria-label="Shopping Cart">
+          <div class="cart-icon-wrap">
+            <i class="fa-solid fa-bag-shopping"></i>
+            <span class="cart-badge-count" id="cartBadgeCount">0</span>
+          </div>
+          <div class="cart-btn-details">
+            <span class="cart-label">Cart</span>
+            <span class="cart-total-preview" id="cartNavTotal">₹0</span>
+          </div>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Banner Section -->
+  <section class="hero-section">
+    <div class="hero-background-decor"></div>
+    <div class="hero-container">
+      <div class="hero-content">
+        <div class="hero-tag">
+          <i class="fa-solid fa-fire-flame-curved"></i> #1 Food Delivery in Town
+        </div>
+        <h1 class="hero-title">
+          Hungry? Let's Get It <span class="gradient-text">Delivered Hot & Fresh.</span>
+        </h1>
+        <p class="hero-description">
+          Craving flame-grilled smash burgers, wood-fired artisanal pizza, or sizzling noodles? Quicky Bite gets gourmet goodness straight to your doorstep in 25 minutes or less!
+        </p>
+
+        <!-- Quick Hero Highlights -->
+        <div class="hero-features">
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fa-solid fa-stopwatch"></i></div>
+            <div>
+              <strong>Superfast Delivery</strong>
+              <p>Under 25 mins guaranteed</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fa-solid fa-utensils"></i></div>
+            <div>
+              <strong>Chef Handcrafted</strong>
+              <p>100% Fresh ingredients</p>
+            </div>
+          </div>
+          <div class="feature-item">
+            <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+            <div>
+              <strong>Zero Contact</strong>
+              <p>Safe & sanitized drop-off</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero CTA row -->
+        <div class="hero-actions">
+          <a href="#menuSection" class="btn btn-primary btn-lg">
+            <span>Explore Menu</span>
+            <i class="fa-solid fa-arrow-right"></i>
+          </a>
+          <button class="btn btn-secondary btn-lg" id="liveOrderDemoBtn">
+            <i class="fa-solid fa-satellite-dish"></i>
+            <span>Track Live Order</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Hero Visual Showcase -->
+      <div class="hero-showcase">
+        <div class="hero-card-floating card-1">
+          <div class="floating-avatar">🚴‍♂️</div>
+          <div class="floating-text">
+            <strong>Rider nearby!</strong>
+            <span>4 mins away with your burger</span>
+          </div>
+        </div>
+
+        <div class="hero-image-wrapper">
+          <img 
+            src="https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=900&q=80" 
+            alt="Quicky Bite Signature Smash Burger" 
+            class="hero-img" 
+          />
+          <div class="rating-badge">
+            <div class="stars">
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star"></i>
+              <i class="fa-solid fa-star-half-stroke"></i>
+            </div>
+            <span><strong>4.9 / 5</strong> (14.2k+ reviews)</span>
+          </div>
+        </div>
+
+        <div class="hero-card-floating card-2">
+          <div class="floating-avatar">🔥</div>
+          <div class="floating-text">
+            <strong>Hot Deal!</strong>
+            <span>20% OFF with code QUICKY20</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Promotions Banner Carousel / Strip -->
+  <section class="promo-strip">
+    <div class="promo-grid">
+      <div class="promo-card promo-orange">
+        <div class="promo-text">
+          <span class="promo-badge">PROMO CODE</span>
+          <h3>20% OFF First 3 Orders</h3>
+          <p>Apply code <strong>QUICKY20</strong> at checkout</p>
+          <button class="copy-coupon-btn" data-code="QUICKY20">
+            <i class="fa-regular fa-copy"></i> Copy Code
+          </button>
+        </div>
+        <div class="promo-icon">🍔</div>
+      </div>
+
+      <div class="promo-card promo-purple">
+        <div class="promo-text">
+          <span class="promo-badge">WEEKEND SPECIAL</span>
+          <h3>Free Delivery on ₹599+</h3>
+          <p>Zero delivery charges automatically</p>
+          <button class="copy-coupon-btn" data-code="FREEDEL">
+            <i class="fa-regular fa-copy"></i> Copy Code
+          </button>
+        </div>
+        <div class="promo-icon">🚀</div>
+      </div>
+
+      <div class="promo-card promo-teal">
+        <div class="promo-text">
+          <span class="promo-badge">FLAT ₹180 DISCOUNT</span>
+          <h3>Gourmet Feast Deal</h3>
+          <p>On orders above ₹720 code <strong>BITE50</strong></p>
+          <button class="copy-coupon-btn" data-code="BITE50">
+            <i class="fa-regular fa-copy"></i> Copy Code
+          </button>
+        </div>
+        <div class="promo-icon">🍕</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Menu & Ordering Section -->
+  <main class="menu-section" id="menuSection">
+    <div class="section-container">
+      
+      <!-- Section Header -->
+      <div class="section-header">
+        <div>
+          <span class="section-subtitle">DELICIOUS DISHES</span>
+          <h2 class="section-title">Explore Our Flavor Universe</h2>
+        </div>
+        
+        <!-- Filters Row (Veg only, Price sort, Ratings) -->
+        <div class="filter-controls">
+          <label class="toggle-switch">
+            <input type="checkbox" id="vegOnlyToggle" />
+            <span class="slider"></span>
+            <span class="toggle-label"><i class="fa-solid fa-leaf veg-icon"></i> Pure Veg</span>
+          </label>
+
+          <div class="custom-select-wrap">
+            <select id="sortSelect" aria-label="Sort dishes">
+              <option value="popular">🔥 Most Popular</option>
+              <option value="rating">⭐ Highest Rated</option>
+              <option value="price-asc">💵 Price: Low to High</option>
+              <option value="price-desc">💎 Price: High to Low</option>
+              <option value="prep-time">⚡ Fastest Delivery</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Category Filter Pills -->
+      <div class="category-scroll-container">
+        <div class="category-pills" id="categoryPills">
+          <button class="category-pill active" data-category="all">
+            <span class="cat-icon">🍽️</span>
+            <span class="cat-name">All Items</span>
+          </button>
+          <button class="category-pill" data-category="burgers">
+            <span class="cat-icon">🍔</span>
+            <span class="cat-name">Burgers</span>
+          </button>
+          <button class="category-pill" data-category="pizzas">
+            <span class="cat-icon">🍕</span>
+            <span class="cat-name">Pizzas</span>
+          </button>
+          <button class="category-pill" data-category="asian">
+            <span class="cat-icon">🍜</span>
+            <span class="cat-name">Asian & Bowls</span>
+          </button>
+          <button class="category-pill" data-category="healthy">
+            <span class="cat-icon">🥗</span>
+            <span class="cat-name">Healthy & Salads</span>
+          </button>
+          <button class="category-pill" data-category="desserts">
+            <span class="cat-icon">🍰</span>
+            <span class="cat-name">Desserts</span>
+          </button>
+          <button class="category-pill" data-category="drinks">
+            <span class="cat-icon">🥤</span>
+            <span class="cat-name">Beverages</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Active Search/Filter indicators -->
+      <div class="active-filter-status" id="filterStatus" style="display: none;">
+        <span>Showing results for "<strong id="searchQueryBadge"></strong>"</span>
+        <button id="resetFilterBtn">Reset All</button>
+      </div>
+
+      <!-- Food Grid -->
+      <div class="food-grid" id="foodGrid">
+        <!-- Rendered dynamically by app.js -->
+      </div>
+
+      <!-- Empty State -->
+      <div class="empty-state" id="emptyState" style="display: none;">
+        <div class="empty-icon">🍽️</div>
+        <h3>No appetizing treats found!</h3>
+        <p>Try searching for something else or clear your active filters.</p>
+        <button class="btn btn-primary" id="emptyResetBtn">View All Dishes</button>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Live Order Simulation / Why Choose Us Section -->
+  <section class="features-banner">
+    <div class="section-container">
+      <div class="features-wrapper">
+        <div class="feature-box">
+          <div class="f-icon"><i class="fa-solid fa-map-location-dot"></i></div>
+          <h3>Live GPS Tracking</h3>
+          <p>Watch your hot food travel from restaurant stove to your dining table in real-time.</p>
+        </div>
+        <div class="feature-box">
+          <div class="f-icon"><i class="fa-solid fa-kitchen-set"></i></div>
+          <h3>Quality Tested Kitchens</h3>
+          <p>Every restaurant passes 40+ hygiene and freshness checkmarks before listing.</p>
+        </div>
+        <div class="feature-box">
+          <div class="f-icon"><i class="fa-solid fa-wallet"></i></div>
+          <h3>Seamless Checkout</h3>
+          <p>Credit cards, UPI, Apple Pay, Google Pay, or Cash on Delivery with zero hassle.</p>
+        </div>
+        <div class="feature-box">
+          <div class="f-icon"><i class="fa-solid fa-headset"></i></div>
+          <h3>24/7 Priority Support</h3>
+          <p>Friendly live support ready to assist you any minute of the day or night.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials & Reviews -->
+  <section class="reviews-section">
+    <div class="section-container">
+      <div class="section-header center">
+        <span class="section-subtitle">LOVED BY FOODIES</span>
+        <h2 class="section-title">What Quicky Biters Say</h2>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p>"The Truffle Smash Burger arrived piping hot in exactly 18 minutes! Easily the fastest delivery service I have ever used."</p>
+          <div class="reviewer">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=120&q=80" alt="Sarah J." />
+            <div>
+              <strong>Sarah Jenkins</strong>
+              <span>Verified Foodie</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p>"The live order tracker map is super cool and accurate. Packaging kept the pizza crust super crispy. 10/10 recommended!"</p>
+          <div class="reviewer">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=120&q=80" alt="Marcus T." />
+            <div>
+              <strong>Marcus Vance</strong>
+              <span>Tech Lead & Pizza Fanatic</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="review-card">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p>"Quicky Bite is my go-to for late night snacks and healthy lunches. The discounts with QUICKY20 saved me a ton too."</p>
+          <div class="reviewer">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=120&q=80" alt="Elena R." />
+            <div>
+              <strong>Elena Rostova</strong>
+              <span>Designer & Daily Customer</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-container">
+      <div class="footer-col brand-col">
+        <div class="logo">
+          <div class="logo-icon"><i class="fa-solid fa-bolt"></i></div>
+          <span class="brand-title">Quicky<span class="highlight">Bite</span></span>
+        </div>
+        <p>Speedy, hygienic, chef-crafted meals delivered directly to your doorstep in minutes.</p>
+        <div class="social-links">
+          <a href="#" aria-label="Twitter"><i class="fa-brands fa-x-twitter"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+          <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook"></i></a>
+          <a href="#" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+        </div>
+      </div>
+
+      <div class="footer-col">
+        <h4>Popular Cuisines</h4>
+        <ul>
+          <li><a href="#" data-cat-link="burgers">Smash Burgers</a></li>
+          <li><a href="#" data-cat-link="pizzas">Artisan Pizzas</a></li>
+          <li><a href="#" data-cat-link="asian">Ramen & Rice Bowls</a></li>
+          <li><a href="#" data-cat-link="healthy">Organic Salads</a></li>
+          <li><a href="#" data-cat-link="desserts">Desserts & Shakes</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Quicky Bite</h4>
+        <ul>
+          <li><a href="#">About Us</a></li>
+          <li><a href="#">Delivery Coverage</a></li>
+          <li><a href="#">Partner With Us</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Security & Hygiene</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Get Help</h4>
+        <ul>
+          <li><a href="#">Customer Support</a></li>
+          <li><a href="#">Track Order</a></li>
+          <li><a href="#">FAQs</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+        </ul>
+      </div>
+    </div>
+    
+    <div class="footer-bottom">
+      <div class="footer-bottom-inner">
+        <p>&copy; 2026 Quicky Bite Inc. Built with ❤️ for food lovers. Continuous Delivery by Sahil Kokate.</p>
+        <div class="pipeline-badge">
+          <i class="fa-solid fa-circle-check text-success"></i> Pipeline: <strong>CI/CD Active</strong>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= MODALS & SLIDE-OVERS ================= -->
+
+  <!-- 1. Cart Drawer -->
+  <div class="drawer-backdrop" id="cartBackdrop"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping Cart">
+    <div class="drawer-header">
+      <div class="drawer-title">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <h3>Your Order</h3>
+        <span class="cart-item-count-badge" id="cartDrawerCount">0 items</span>
+      </div>
+      <button class="close-drawer-btn" id="cartCloseBtn" aria-label="Close Cart">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+    </div>
+
+    <!-- Free Delivery Progress Bar -->
+    <div class="free-delivery-meter" id="freeDeliveryMeter">
+      <div class="meter-text" id="meterText">Add ₹599 more for FREE Delivery!</div>
+      <div class="meter-bar">
+        <div class="meter-fill" id="meterFill" style="width: 0%;"></div>
+      </div>
+    </div>
+
+    <!-- Cart Items Scroll List -->
+    <div class="cart-items-container" id="cartItemsContainer">
+      <!-- Rendered dynamically -->
+    </div>
+
+    <!-- Cart Footer with Pricing & Checkout -->
+    <div class="cart-footer" id="cartFooter">
+      <!-- Promo Code Section -->
+      <div class="promo-box">
+        <div class="promo-input-row">
+          <i class="fa-solid fa-tag"></i>
+          <input type="text" id="promoInput" placeholder="Enter coupon code" />
+          <button id="applyPromoBtn">Apply</button>
+        </div>
+        <div class="promo-status" id="promoStatusMessage"></div>
+      </div>
+
+      <!-- Price Breakdown -->
+      <div class="price-summary">
+        <div class="price-row">
+          <span>Subtotal</span>
+          <span id="subtotalPrice">₹0</span>
+        </div>
+        <div class="price-row discount-row" id="discountRow" style="display: none;">
+          <span>Discount (<span id="discountName"></span>)</span>
+          <span id="discountPrice">-₹0</span>
+        </div>
+        <div class="price-row">
+          <span>Delivery Fee</span>
+          <span id="deliveryPrice">₹49</span>
+        </div>
+        <div class="price-row">
+          <span>Taxes & Restaurant Fees (8%)</span>
+          <span id="taxPrice">₹0</span>
+        </div>
+        <div class="price-row total-row">
+          <span>Total To Pay</span>
+          <span id="grandTotalPrice">₹0</span>
+        </div>
+      </div>
+
+      <!-- Checkout Button -->
+      <button class="btn btn-primary btn-block checkout-btn" id="proceedToCheckoutBtn">
+        <span>Proceed to Checkout</span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </button>
+    </div>
+  </aside>
+
+  <!-- 2. Item Customization Modal -->
+  <div class="modal-overlay" id="customizeModalOverlay">
+    <div class="modal-content customize-modal">
+      <button class="modal-close" id="closeCustomizeModal"><i class="fa-solid fa-xmark"></i></button>
+      <div class="customize-body" id="customizeModalBody">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Checkout Modal -->
+  <div class="modal-overlay" id="checkoutModalOverlay">
+    <div class="modal-content checkout-modal">
+      <button class="modal-close" id="closeCheckoutModal"><i class="fa-solid fa-xmark"></i></button>
+      <div class="checkout-header">
+        <div class="checkout-icon"><i class="fa-solid fa-credit-card"></i></div>
+        <div>
+          <h3>Checkout & Delivery Details</h3>
+          <p>Complete your address and payment to launch your delivery.</p>
+        </div>
+      </div>
+
+      <form id="checkoutForm" class="checkout-form">
+        <!-- Contact & Address -->
+        <div class="form-section">
+          <h4><i class="fa-solid fa-user"></i> Contact & Address</h4>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="custName">Full Name *</label>
+              <input type="text" id="custName" placeholder="Sahil Kokate" required value="Sahil Kokate" />
+            </div>
+            <div class="form-group">
+              <label for="custPhone">Phone Number *</label>
+              <input type="tel" id="custPhone" placeholder="+1 (555) 019-2834" required value="+1 (555) 234-8765" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="custAddress">Delivery Address *</label>
+            <input type="text" id="custAddress" placeholder="Apt 4B, 104 Main Street, Downtown" required value="Apt 4B, 104 Main Street, Downtown" />
+          </div>
+          <div class="form-group">
+            <label for="custNotes">Delivery Instructions (Optional)</label>
+            <input type="text" id="custNotes" placeholder="Leave at door / Call when arrived" />
+          </div>
+        </div>
+
+        <!-- Payment Method -->
+        <div class="form-section">
+          <h4><i class="fa-solid fa-shield-halved"></i> Payment Method</h4>
+          <div class="payment-options">
+            <label class="payment-card selected">
+              <input type="radio" name="paymentMethod" value="card" checked />
+              <div class="pay-icon"><i class="fa-solid fa-credit-card"></i></div>
+              <div class="pay-label">
+                <strong>Credit / Debit Card</strong>
+                <small>Visa, Mastercard, Amex</small>
+              </div>
+            </label>
+
+            <label class="payment-card">
+              <input type="radio" name="paymentMethod" value="upi" />
+              <div class="pay-icon"><i class="fa-solid fa-qrcode"></i></div>
+              <div class="pay-label">
+                <strong>Instant UPI / QR</strong>
+                <small>Google Pay, PhonePe, Paytm</small>
+              </div>
+            </label>
+
+            <label class="payment-card qr-payment-card">
+              <input type="radio" name="paymentMethod" value="qr" />
+              <div class="pay-icon"><i class="fa-solid fa-qrcode"></i></div>
+              <div class="pay-label">
+                <strong>Pay by QR</strong>
+                <small>UPI: sahilkokate27@okaxis</small>
+              </div>
+              <img src="my-qr.png" alt="Sahil Kokate UPI payment QR code" class="payment-qr" onerror="this.style.display='none'" />
+            </label>
+
+            <label class="payment-card">
+              <input type="radio" name="paymentMethod" value="cod" />
+              <div class="pay-icon"><i class="fa-solid fa-money-bill-wave"></i></div>
+              <div class="pay-label">
+                <strong>Cash on Delivery</strong>
+                <small>Pay at your doorstep</small>
+              </div>
+            </label>
+          </div>
+        </div>
+
+        <!-- Order Summary Snapshot -->
+        <div class="checkout-summary-box">
+          <div class="summary-line">
+            <span>Items Total (<span id="checkoutSummaryCount">0</span> items)</span>
+            <strong id="checkoutSummarySubtotal">₹0</strong>
+          </div>
+          <div class="summary-line highlight-total">
+            <span>Total Amount Due</span>
+          <span class="checkout-grand-total" id="checkoutSummaryTotal">₹0</span>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block btn-lg" id="placeOrderSubmitBtn">
+          <i class="fa-solid fa-lock"></i>
+          <span>Place Order Now</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 4. Live Order Tracking Modal -->
+  <div class="modal-overlay" id="trackerModalOverlay">
+    <div class="modal-content tracker-modal">
+      <button class="modal-close" id="closeTrackerModal"><i class="fa-solid fa-xmark"></i></button>
+      
+      <div class="tracker-header">
+        <div class="order-id-badge">
+          <span class="pulse-dot"></span>
+          <span>Order #<strong id="trackerOrderId">QB-89241</strong></span>
+        </div>
+        <div class="eta-box">
+          <span class="eta-label">Estimated Delivery</span>
+          <strong class="eta-time" id="trackerEta">18 - 22 mins</strong>
+        </div>
+      </div>
+
+      <!-- Animated Status Progress Timeline -->
+      <div class="tracker-timeline">
+        <div class="timeline-step active" id="step1">
+          <div class="step-icon"><i class="fa-solid fa-receipt"></i></div>
+          <div class="step-info">
+            <strong>Order Confirmed</strong>
+            <span>Restaurant received your order</span>
+          </div>
+          <div class="step-time">Just now</div>
+        </div>
+
+        <div class="timeline-step" id="step2">
+          <div class="step-icon"><i class="fa-solid fa-fire-burner"></i></div>
+          <div class="step-info">
+            <strong>Cooking in Kitchen</strong>
+            <span>Chef is preparing fresh ingredients</span>
+          </div>
+          <div class="step-time">In progress</div>
+        </div>
+
+        <div class="timeline-step" id="step3">
+          <div class="step-icon"><i class="fa-solid fa-motorcycle"></i></div>
+          <div class="step-info">
+            <strong>Out for Delivery</strong>
+            <span>Courier is speeding your way</span>
+          </div>
+          <div class="step-time">Next up</div>
+        </div>
+
+        <div class="timeline-step" id="step4">
+          <div class="step-icon"><i class="fa-solid fa-house-chimney"></i></div>
+          <div class="step-info">
+            <strong>Arrived & Enjoy!</strong>
+            <span>Bon Appétit from Quicky Bite</span>
+          </div>
+          <div class="step-time">Final</div>
+        </div>
+      </div>
+
+      <!-- Animated GPS Route Simulation Canvas / Graphic -->
+      <div class="tracker-map-box">
+        <div class="map-illustration">
+          <div class="map-grid"></div>
+          <div class="map-route-line"></div>
+          <div class="map-marker restaurant-marker" title="Quicky Bite Central Kitchen">
+            <i class="fa-solid fa-store"></i>
+          </div>
+          <div class="map-marker driver-marker" id="driverMapMarker" title="Delivery Rider">
+            <i class="fa-solid fa-motorcycle"></i>
+          </div>
+          <div class="map-marker home-marker" title="Your Delivery Address">
+            <i class="fa-solid fa-house"></i>
+          </div>
+        </div>
+      </div>
+
+      <!-- Driver Profile Card -->
+      <div class="driver-card">
+        <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=120&q=80" alt="Rider Alex" class="driver-photo" />
+        <div class="driver-info">
+          <h4>Alex Rivera</h4>
+          <p><i class="fa-solid fa-star text-warning"></i> 4.95 Rating &bull; 1,420+ Deliveries</p>
+          <span class="vehicle-info">Honda CB Shine &bull; Plate #QB-771</span>
+        </div>
+        <div class="driver-actions">
+          <button class="call-driver-btn" id="callRiderBtn" title="Call Rider">
+            <i class="fa-solid fa-phone"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Ordered Items Accordion in Tracker -->
+      <div class="tracker-items-summary" id="trackerItemsList">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Order History Modal -->
+  <div class="modal-overlay" id="historyModalOverlay">
+    <div class="modal-content history-modal">
+      <button class="modal-close" id="closeHistoryModal"><i class="fa-solid fa-xmark"></i></button>
+      <div class="modal-title-bar">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+        <h3>Past Orders & Receipts</h3>
+      </div>
+      <div class="history-list" id="historyListContainer">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. Wishlist Modal -->
+  <div class="modal-overlay" id="wishlistModalOverlay">
+    <div class="modal-content wishlist-modal">
+      <button class="modal-close" id="closeWishlistModal"><i class="fa-solid fa-xmark"></i></button>
+      <div class="modal-title-bar">
+        <i class="fa-solid fa-heart text-danger"></i>
+        <h3>My Favorite Bites</h3>
+      </div>
+      <div class="wishlist-grid" id="wishlistGridContainer">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. Location Selector Modal -->
+  <div class="modal-overlay" id="locationModalOverlay">
+    <div class="modal-content location-modal">
+      <button class="modal-close" id="closeLocationModal"><i class="fa-solid fa-xmark"></i></button>
+      <div class="modal-title-bar">
+        <i class="fa-solid fa-map-pin text-primary"></i>
+        <h3>Select Delivery Location</h3>
+      </div>
+      <div class="saved-locations-list">
+        <button class="location-option-card active" data-addr="104 Main Street, Downtown">
+          <i class="fa-solid fa-building"></i>
+          <div>
+            <strong>Downtown Office</strong>
+            <span>104 Main Street, Downtown</span>
+          </div>
+        </button>
+        <button class="location-option-card" data-addr="742 Evergreen Terrace, Springfield">
+          <i class="fa-solid fa-house"></i>
+          <div>
+            <strong>Home</strong>
+            <span>742 Evergreen Terrace, Springfield</span>
+          </div>
+        </button>
+        <button class="location-option-card" data-addr="Silicon Tech Park, Tower B, Level 4">
+          <i class="fa-solid fa-laptop-code"></i>
+          <div>
+            <strong>Tech Hub Campus</strong>
+            <span>Silicon Tech Park, Tower B, Level 4</span>
+          </div>
+        </button>
+      </div>
+      <div class="custom-address-entry">
+        <input type="text" id="newAddressInput" placeholder="Enter custom address..." />
+        <button class="btn btn-primary" id="saveCustomAddressBtn">Set Location</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <!-- Floating Mobile Cart Pill -->
+  <div class="mobile-cart-float" id="mobileCartFloat">
+    <div class="m-cart-info">
+      <span class="m-cart-count" id="mobileCartCount">0 items</span>
+      <span class="m-cart-price" id="mobileCartPrice">₹0</span>
+    </div>
+    <button class="m-cart-btn" id="mobileCartOpenBtn">
+      <span>View Cart</span>
+      <i class="fa-solid fa-arrow-right"></i>
+    </button>
+  </div>
+
+  <!-- Confetti Canvas for Celebration -->
+  <canvas id="confettiCanvas"></canvas>
+
+  <!-- JavaScript -->
+  <script src="app.js"></script>
+</body>
+</html>
